@@ -1,12 +1,21 @@
 package ui;
 
 import actions.AppActions;
+import javafx.scene.chart.Chart;
 import javafx.scene.chart.ScatterChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import vilij.propertymanager.PropertyManager;
 import vilij.templates.ApplicationTemplate;
 import vilij.templates.UITemplate;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
+
+import static vilij.settings.PropertyTypes.*;
+import static vilij.settings.PropertyTypes.EXIT_TOOLTIP;
 
 /**
  * This is the application's user interface implementation.
@@ -40,6 +49,15 @@ public final class AppUI extends UITemplate {
     @Override
     protected void setToolBar(ApplicationTemplate applicationTemplate) {
         // TODO for homework 1
+        PropertyManager manager = applicationTemplate.manager;
+        newButton = setToolbarButton(newiconPath, manager.getPropertyValue(NEW_TOOLTIP.name()), true);
+        saveButton = setToolbarButton(saveiconPath, manager.getPropertyValue(SAVE_TOOLTIP.name()), true);
+        loadButton = setToolbarButton(loadiconPath, manager.getPropertyValue(LOAD_TOOLTIP.name()), false);
+        printButton = setToolbarButton(printiconPath, manager.getPropertyValue(PRINT_TOOLTIP.name()), true);
+        exitButton = setToolbarButton(exiticonPath, manager.getPropertyValue(EXIT_TOOLTIP.name()), false);
+        toolBar = new ToolBar(newButton, saveButton, loadButton, printButton, exitButton);
+
+
     }
 
     @Override
@@ -64,6 +82,14 @@ public final class AppUI extends UITemplate {
     }
 
     private void layout() {
+        final NumberAxis xAxis = new NumberAxis(0, 110, 10);
+        final NumberAxis yAxis = new NumberAxis(0, 100, 10);
+        chart = new ScatterChart<Number,Number>(xAxis,yAxis);
+
+        Label label = new Label("Data File");
+
+
+
         // TODO for homework 1
     }
 
