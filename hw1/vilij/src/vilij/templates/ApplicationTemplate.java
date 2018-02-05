@@ -36,6 +36,7 @@ public class ApplicationTemplate extends Application {
     protected void dialogsAudit(Stage primaryStage) {
         errorDialog.init(primaryStage);
         confirmationDialog.init(primaryStage);
+
     }
 
     protected boolean propertyAudit() {
